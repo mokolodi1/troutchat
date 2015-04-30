@@ -1,0 +1,34 @@
+<head>
+  <title>troutchat</title>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to TroutChat!</h1>
+    {{> loginButtons}}
+  </header>
+  
+  <div>
+    {{#if hasMessages}}
+      {{#each getChats}}
+        {{message}}
+      {{/each}}
+    {{else}}
+      There are no messages :(
+    {{/if}}
+  </div>
+
+  <div>
+    {{#if currentUser}}
+      <form class="new-message">
+        <input type="text" name="text" placeholder="Enter your message..." />
+      </form>
+    {{else}}
+      Sign in to send messages
+    {{/if}}
+  </div>
+</body>
+
+<template name="message">
+  <p>{{messageText}}</p>
+</template>
