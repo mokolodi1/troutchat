@@ -35,6 +35,12 @@ h1 {
 ** used in message template
 */
 
+.whole-message {
+    display: flex;
+    justify-content: space-between;
+
+}
+
 #messages {
     padding: 20px;
     padding-bottom: 10px;
@@ -50,7 +56,7 @@ h1 {
 
 .message-time {
     color: #B2B2B2;
-    float: right;
+    flex-shrink: 0;
 }
 
 ul {
