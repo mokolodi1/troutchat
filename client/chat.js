@@ -1,5 +1,3 @@
-Session.setDefault('isScrollingDown', false);
-
 Template.body.helpers({
   hasMessages: function () {
     return Messages.find().count() !== 0;

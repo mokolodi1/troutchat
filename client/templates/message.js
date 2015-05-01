@@ -10,11 +10,25 @@ Template.message.helpers({
   }
 });
 
+Session.setDefault('isScrollingDown', false);
+Session.setDefault('needToRescroll', false);
+
 Template.message.rendered = function () {
-  if (! Session.get("isScrollingDown")) {
-    Session.set("isScrollingDown", true);
-    $('body').animate({ scrollTop: $("div#messages").height() }, 50, function () {
-      Session.set("isScrollingDown", false);
-    });
+
+  var scrollMeDown = function () {
+    if (! Session.get("isScrollingDown")) {
+      Session.set("isScrollingDown", true);
+      Session.set("needToRescroll", false);
+      $('body').animate({ scrollTop: $("div#messages").height() }, 50, function () {
+        Session.set("isScrollingDown", false);
+        if (Session.get("needToRescroll")) {
+          scrollMeDown();
+        }
+      });
+    } else {
+      Session.set("needToRescroll", true);
+    }
   }
+
+  scrollMeDown();
 };

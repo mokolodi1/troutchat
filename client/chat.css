@@ -72,14 +72,14 @@ li {
 ** new message form (footer)
 */
 
-footer {
+#footer {
     position: fixed;
     bottom: 0px;
     width: 100%;
     background-color: #FFF;
 }
 
-    footer form {
+    #footer form {
         width: 100%;
         display: flex;
         justify-content: center;
