@@ -7,11 +7,13 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Messages.insert({
-      messageText: newMessageText,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username
-    });
+    if (newMessageText.length > 0) {
+      Messages.insert({
+        messageText: newMessageText,
+        createdAt: new Date(),
+        owner: Meteor.userId(),
+        username: Meteor.user().username
+      });
+    }
   }
 });

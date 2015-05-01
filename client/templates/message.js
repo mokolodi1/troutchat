@@ -9,3 +9,12 @@ Template.message.helpers({
       return this.createdAt.format("hh:MM");
   }
 });
+
+Template.message.rendered = function () {
+  if (! Session.get("isScrollingDown")) {
+    Session.set("isScrollingDown", true);
+    $('body').animate({ scrollTop: $("div#messages").height() }, 50, function () {
+      Session.set("isScrollingDown", false);
+    });
+  }
+};

@@ -8,9 +8,11 @@ Template.newMessageForm.rendered = function() {
     if (event.which == 13) {
       var text = $(event.target).val();      
 
-      Meteor.call("addMessage", text);
+      if (text.length > 0) {
+        Meteor.call("addMessage", text);
+        $(event.target).val("");
+      }
 
-      $(event.target).val("");
       event.preventDefault();
     }
   });
