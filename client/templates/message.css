@@ -1,0 +1,32 @@
+.whole-message {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#messages {
+    padding: 20px;
+    padding-bottom: 10px;
+    margin-top: 65px;
+    margin-bottom: 30px;
+    overflow: auto;
+    min-height: 100%;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.message-time {
+    color: #B2B2B2;
+    flex-shrink: 0;
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+li {
+    list-style-type: none;
+}
