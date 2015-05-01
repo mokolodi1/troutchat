@@ -1,0 +1,27 @@
+<head>
+  <title>Troutchat</title>
+  <link rel="shortcut icon" href="trout.ico" />
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Troutchat!</h1>
+    {{> loginButtons}}
+  </header>
+  
+  <div id="messages">
+    <ul>
+      {{#if hasMessages}}
+        {{#each getChats}}
+          {{> message}}
+        {{/each}}
+      {{else}}
+        There are no messages :(
+      {{/if}}
+    </ul>
+  </div>
+
+  <footer>
+    {{> newMessageForm}}
+  </footer>
+</body>
