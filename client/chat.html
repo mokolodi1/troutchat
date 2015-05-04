@@ -9,17 +9,27 @@
     {{> loginButtons}}
     <!-- I am hackr -->
     <span style="margin-left: 10px"></span>
-    <a href="">settings &#9662;</a>
+    <span>auto scrolldown: </span>
+    <input type="checkbox" checked="{{autoScrolldown}}" id="toggle-autoscrolldown" />
+    <div id="room-tabs">
+      {{#each rooms}}
+        {{> tab}}
+      {{/each}}
+    </div>
   </header>
   
   <div id="messages">
     <ul>
-      {{#if hasMessages}}
-        {{#each getChats}}
-          {{> message}}
-        {{/each}}
+      {{#if isLoaded}}
+        {{#if hasMessages}}
+          {{#each getChats}}
+            {{> message}}
+          {{/each}}
+        {{else}}
+          There are no messages :(
+        {{/if}}
       {{else}}
-        There are no messages :(
+        Loading...
       {{/if}}
     </ul>
   </div>

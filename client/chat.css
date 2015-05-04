@@ -17,18 +17,17 @@ header {
     width: 100%;
     text-align: center;
     background-color: #FFA500;
-    color: #FFF;
 
     -webkit-box-shadow: 0px 4px 6px 10px rgba(255,165,0,1);
     -moz-box-shadow: 0px 4px 6px 10px rgba(255,165,0,1);
     box-shadow: 0px 4px 6px 10px rgba(255,165,0,1);
-    
 }
 
 h1 {
     margin: 0px;
     margin-top: 5px;
-    white-space:nowrap;
+    white-space: nowrap;
+    /*color: #FFF;*/
 }
 
 a {

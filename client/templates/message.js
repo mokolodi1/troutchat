@@ -29,6 +29,6 @@ Template.message.rendered = function () {
       Session.set("needToRescroll", true);
     }
   }
-
-  scrollMeDown();
+  if (Session.get("autoScrolldown"))
+    scrollMeDown();
 };

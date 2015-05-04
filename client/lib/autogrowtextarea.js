@@ -17,7 +17,7 @@
  * Edited by Teo Fleming May 1, 2015
  */
 
-jQuery.fn.autoGrow = function() {
+jQuery.fn.autoGrow = function(maxLineHeight) {
 	return this.each(function() {
 
 		var createMirror = function(textarea) {
@@ -40,6 +40,10 @@ jQuery.fn.autoGrow = function() {
 				jQuery(textarea).height(jQuery(mirror).height());
 			
 			var lineHeight = parseInt($(textarea).css('line-height'), 10);
+
+			if (maxLineHeight && lineHeight > maxLineHeight)
+				lineHeight = maxLineHeight;
+
 			if ($(textarea).height() < lineHeight)
 				jQuery(textarea).height(lineHeight);
 		}
