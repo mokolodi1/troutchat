@@ -7,10 +7,4 @@ if (Rooms.find().count() === 0) {
     users: {},
     global: true
   });
-
-  Rooms.insert({
-  	name: "Other chat room",
-  	users: {},
-  	global: false
-  })
 }

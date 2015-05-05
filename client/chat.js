@@ -54,6 +54,8 @@ Template.settings.events({
     $("#room-name").val("");
     $("#usernames").val("");
 
+    Meteor.subscribe("rooms");
+
     return false;
   }
 });
