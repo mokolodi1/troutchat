@@ -9,7 +9,7 @@ Template.newMessageForm.rendered = function() {
       var text = $(event.target).val();      
 
       if (text.length > 0) {
-        Meteor.call("addMessage", text);
+        Meteor.call("addMessage", text, Session.get("currentRoomId"));
         $(event.target).val("");
       }
 

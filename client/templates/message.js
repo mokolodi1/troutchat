@@ -1,14 +1,17 @@
 Template.message.helpers({
 	dateTime: function () {
-    twelveHours = 12 * 60 * 60 * 1000;
-    if (this.createdAt.getTime() < Date.now() - twelveHours * 2)
-      return this.createdAt.format("mmm d yyyy hh:MM TT");
-    else if (this.createdAt.getTime() < Date.now() - twelveHours)
-      return this.createdAt.format("hh:MM TT");
+    twentyFourHours = 12 * 60 * 60 * 1000;
+    if (this.createdAt.getTime() < Date.now() - twentyFourHours)
+      return this.createdAt.format("mmm d");
     else
-      return this.createdAt.format("hh:MM");
+      return this.createdAt.format("h:MM tt");
+  },
+  altText: function () {
+    return this.createdAt.format("h:MM tt, mmm d yyyy");
   }
 });
+
+Session.setDefault("autoScrolldown", true);
 
 Session.setDefault('isScrollingDown', false);
 Session.setDefault('needToRescroll', false);

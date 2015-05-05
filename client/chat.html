@@ -4,24 +4,38 @@
 </head>
 
 <body>
-  <header>
-    <h1>Welcome to Troutchat!</h1>
-    {{> loginButtons}}
-    <!-- I am hackr -->
-    <span style="margin-left: 10px"></span>
-    <span>auto scrolldown: </span>
-    <input type="checkbox" checked="{{autoScrolldown}}" id="toggle-autoscrolldown" />
-    <div id="room-tabs">
-      {{#each rooms}}
-        {{> tab}}
-      {{/each}}
-    </div>
-  </header>
-  
-  <div id="footer">
-    {{> newMessageForm}}
-  </div>
 
+  {{> leftBar}}
+
+  {{> chat}}
+
+</body>
+
+<template name="leftBar">
+  <div id="room-list">
+    <div id="header" class="border-bottom">
+      <h1>Troutchat</h1>
+      {{> loginButtons}}
+      <span style="margin-left: 10px"></span>
+
+      <a href="#" id="settings-or-rooms">
+        {{#if editingSettings}}
+          Rooms
+        {{else}}
+          Settings
+        {{/if}}
+      </a>
+    </div>
+
+    {{#if editingSettings}}
+      {{> settings}}
+    {{else}}
+      {{> roomList}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="chat">
   <div id="messages">
     <ul>
       {{#if isLoaded}}
@@ -36,5 +50,44 @@
         Loading...
       {{/if}}
     </ul>
+
+    {{#if isLoaded}}
+      <div id="write-message">
+        {{> newMessageForm}}
+      </div>
+    {{/if}}
   </div>
-</body>
+</template>
+
+<template name="settings">
+  <div id="settings">
+    {{#if currentUser}}
+      <h4>Add a room</h4>
+      <form id="create-room">
+        <input id="room-name" type="text" placeholder="Room name"/>
+        <input id="usernames" type="text" placeholder="Usernames (seperated by commas)"/>
+        <br />
+        <input type="submit" value="Create">
+      </form>
+    {{else}}
+      Log in to add a chat room
+    {{/if}}
+
+    <br />
+
+    Toggle autoscrolldown:
+    <input type="checkbox" checked="{{autoScrolldown}}" id="toggle-auto-scrolldown" />
+  </div>
+</template>
+
+<template name="roomList">
+  {{#each rooms}}
+    {{> room}}
+  {{/each}}
+</template>
+
+<template name="room">
+  <div class="room border-bottom" name="{{_id}}">
+    <span>{{name}}</span>
+  </div>
+</template>
