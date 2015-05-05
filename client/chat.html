@@ -18,6 +18,10 @@
     </div>
   </header>
   
+  <div id="footer">
+    {{> newMessageForm}}
+  </div>
+
   <div id="messages">
     <ul>
       {{#if isLoaded}}
@@ -32,9 +36,5 @@
         Loading...
       {{/if}}
     </ul>
-  </div>
-
-  <div id="footer">
-    {{> newMessageForm}}
   </div>
 </body>

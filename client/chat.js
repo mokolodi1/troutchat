@@ -45,3 +45,7 @@ Template.body.helpers({
 Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
 });
+
+Router.route('/', function () {
+  this.render('');
+});
