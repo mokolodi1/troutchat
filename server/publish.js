@@ -1,22 +1,60 @@
-Meteor.publish("messages", function () {
-  return Messages.find({});
-});
+var getVisibleRooms = function () {
+  var globalRooms = Rooms.find({ global: true }).fetch();
 
-Meteor.publish("rooms", function () {
-  console.log("about to set bleh");
-  console.log(Meteor.users.findOne({ _id: this.userId }).rooms);
-
-  if (Meteor.users.findOne({ _id: this.userId }).rooms) {
-    bleh = Rooms.find({
-      $or: [
-        { global: true },
-        { _id: { $in: Meteor.users.findOne({ _id: this.userId }).rooms } }
-      ]
-    });
+  if (Meteor.userId) {
+    console.log("userId is good");
+    return globalRooms.concat(Meteor.users.findOne({ _id: Meteor.userId }).rooms);
   } else {
-    bleh = Rooms.find({ global: true });
+    console.log("userId not so good");
+    return globalRooms;
   }
+}
 
-  console.log(bleh.fetch());
-  return bleh;
+Tracker.autorun(function () {
+  Meteor.publish("messages", function () {
+    return Messages.find({
+      roomId: { $in: getVisibleRooms() }
+    });
+  });
+
+  Meteor.publish("rooms", function () {
+
+    userRooms = getVisibleRooms();
+
+    console.log(userRooms);
+
+    if (userRooms) {
+      return Rooms.find({
+        _id: { $in: userRooms }
+      });
+    }
+
+    console.log("only returning globals");
+
+    return Rooms.find({ global: true });
+  });
 });
+
+
+
+/*Tracker.autorun(function () {
+
+
+
+  Meteor.publish("rooms", function () {
+
+    if (userRooms) {
+      return Rooms.find({
+        $or: [
+          { global: true },
+          { _id: { $in: userRooms } }
+        ]
+      });
+    }
+
+    console.log("only returning globals");
+
+    return Rooms.find({ global: true });
+  });
+});
+*/
