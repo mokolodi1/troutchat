@@ -3,7 +3,9 @@ Template.body.helpers({
     return Messages.find().count() !== 0;
   },
   getChats: function () {
-    return Messages.find({});
+    return Messages.find({}, {
+      sort: { createdAt: 1 }
+    });
   }
 });
 
